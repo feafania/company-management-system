@@ -1,26 +1,28 @@
 # Requirements Checklist
 
 ## Authentication
-- [ ] Laravel UI (Bootstrap) used as the default theme
-- [ ] Administrator can log in
-- [ ] Registration removed
-- [ ] Seeder creates admin@admin.com / password
+- [X] Laravel UI (Bootstrap) used as the default theme
+- [X] Administrator can log in
+- [X] Registration removed
+- [X] Seeder creates admin@admin.com / password
 
 ## Companies
-- [ ] Fields: name (required), email, logo (min 100x100), website
+- [X] Fields: name (required), email, logo (min 100x100), website
+- [X] Models, relationships and factories
 - [ ] Logos stored in storage/app/public and accessible from public
 - [ ] Full CRUD with resource controller
 - [ ] Validation via Request classes
 - [ ] Pagination: 10 per page
 
 ## Employees
-- [ ] Fields: first name (required), last name (required), company, email, phone
+- [X] Fields: first name (required), last name (required), company, email, phone
+- [X] Models, relationships and factories
 - [ ] Full CRUD with resource controller
 - [ ] Validation via Request classes
 - [ ] Pagination: 10 per page
 
 ## General
-- [ ] Migrations for both tables
+- [X] Migrations for both tables
 - [ ] Menu items: Companies, Employees
 - [ ] Automated tests
 - [ ] README with setup instructions
