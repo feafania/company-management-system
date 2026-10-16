@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class CompanyController extends Controller
@@ -24,17 +25,30 @@ class CompanyController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('companies.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $data = $request->validate([
+            'name'    => ['required', 'string', 'max:255'],
+            'email'   => ['nullable', 'email', 'max:255'],
+            'logo'    => ['nullable', 'image', 'dimensions:min_width=100,min_height=100'],
+            'website' => ['nullable', 'url', 'max:255'],
+        ]);
+
+        if ($request->hasFile('logo')) {
+            $data['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        Company::query()->create($data);
+
+        return redirect()->route('companies.index')->with('status', 'Company created.');
     }
 
     /**
