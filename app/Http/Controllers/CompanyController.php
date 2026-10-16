@@ -4,15 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        $companies = Company::query()
+            ->withCount('employees')
+            ->orderBy('name')
+            ->paginate(10);
+
+        return view('companies.index', compact('companies'));
     }
 
     /**
