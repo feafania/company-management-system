@@ -42,12 +42,13 @@
                             </td>
                             <td>{{ $company->employees_count }}</td>
                             <td class="text-end">
-                                <a href="{{ route('companies.show', $company) }}" class="btn btn-sm btn-outline-secondary">View</a>
-                                <a href="{{ route('companies.edit', $company) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                                <a href="{{ route('companies.show', ['company' => $company, 'page' => $companies->currentPage()]) }}" class="btn btn-sm btn-outline-secondary">View</a>
+                                <a href="{{ route('companies.edit', ['company' => $company, 'page' => $companies->currentPage()]) }}" class="btn btn-sm btn-outline-primary">Edit</a>
                                 <form action="{{ route('companies.destroy', $company) }}" method="POST" class="d-inline"
                                       onsubmit="return confirm('Delete this company and all its employees?')">
                                     @csrf
                                     @method('DELETE')
+                                    <input type="hidden" name="page" value="{{ $companies->currentPage() }}">
                                     <button class="btn btn-sm btn-outline-danger">Delete</button>
                                 </form>
                             </td>

@@ -31,6 +31,13 @@
 
                 <div class="mb-3">
                     <label for="logo" class="form-label">Logo</label>
+                    <div class="mb-2">
+                        <img id="logo-preview"
+                             src=""
+                             alt="Logo preview"
+                             height="80"
+                             class="img-thumbnail d-none">
+                    </div>
                     <input type="file" id="logo" name="logo" accept="image/*"
                            class="form-control @error('logo') is-invalid @enderror">
                     <div class="form-text">Minimum size 100×100 pixels.</div>

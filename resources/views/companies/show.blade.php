@@ -5,8 +5,8 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h1 class="h3 mb-0">{{ $company->name }}</h1>
         <div>
-            <a href="{{ route('companies.edit', $company) }}" class="btn btn-primary">Edit</a>
-            <a href="{{ route('companies.index') }}" class="btn btn-outline-secondary">Back to list</a>
+           <a href="{{ route('companies.edit', ['company' => $company, 'page' => request('page', 1)]) }}" class="btn btn-primary">Edit</a>
+           <a href="{{ route('companies.index', ['page' => request('page', 1)]) }}" class="btn btn-outline-secondary">Back to list</a>
         </div>
     </div>
 
