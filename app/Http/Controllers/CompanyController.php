@@ -93,8 +93,20 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+    public function destroy(Request $request, Company $company): RedirectResponse
     {
-        //
+        if ($company->logo) {
+            Storage::disk('public')->delete($company->logo);
+        }
+
+        $company->delete();
+
+        $page = max(1, (int) $request->input('page', 1));
+        $companies = Company::query()->count();
+        $lastPage = max(1, (int) ceil($companies / 10));
+
+        return redirect()
+            ->route('companies.index', ['page' => min($page, $lastPage)])
+            ->with('status', 'Company deleted.');
     }
 }

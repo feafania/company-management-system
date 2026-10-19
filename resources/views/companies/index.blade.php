@@ -44,13 +44,13 @@
                             <td class="text-end">
                                 <a href="{{ route('companies.show', ['company' => $company, 'page' => $companies->currentPage()]) }}" class="btn btn-sm btn-outline-secondary">View</a>
                                 <a href="{{ route('companies.edit', ['company' => $company, 'page' => $companies->currentPage()]) }}" class="btn btn-sm btn-outline-primary">Edit</a>
-                                <form action="{{ route('companies.destroy', $company) }}" method="POST" class="d-inline"
-                                      onsubmit="return confirm('Delete this company and all its employees?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="page" value="{{ $companies->currentPage() }}">
-                                    <button class="btn btn-sm btn-outline-danger">Delete</button>
-                                </form>
+                                <button type="button" class="btn btn-sm btn-outline-danger"
+                                        data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                        data-action="{{ route('companies.destroy', $company) }}"
+                                        data-name="{{ $company->name }}"
+                                        data-hint="All employees of this company will be deleted too.">
+                                    Delete
+                                </button>
                             </td>
                         </tr>
                     @empty
@@ -66,5 +66,7 @@
     <div class="mt-3">
         {{ $companies->links() }}
     </div>
+
+    @include('partials.delete-modal')
 </div>
 @endsection
