@@ -50,9 +50,11 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Company $company)
+    public function show(Company $company): View
     {
-        //
+        $company->loadCount('employees');
+
+        return view('companies.show', compact('company'));
     }
 
     /**
