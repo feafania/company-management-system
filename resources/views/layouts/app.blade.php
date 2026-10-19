@@ -70,5 +70,6 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{ asset('js/logo-preview.js') }}"></script>
 </body>
 </html>
