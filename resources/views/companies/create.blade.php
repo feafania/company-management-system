@@ -38,9 +38,9 @@
                              height="80"
                              class="img-thumbnail d-none">
                     </div>
-                    <input type="file" id="logo" name="logo" accept="image/*"
+                    <input type="file" id="logo" name="logo" accept="image/png,image/jpeg"
                            class="form-control @error('logo') is-invalid @enderror">
-                    <div class="form-text">Minimum size 100×100 pixels.</div>
+                    <div class="form-text">JPG or PNG, minimum 100×100 pixels, maximum 2 MB.</div>
                     @error('logo')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

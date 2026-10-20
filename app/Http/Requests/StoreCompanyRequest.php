@@ -26,7 +26,7 @@ class StoreCompanyRequest extends FormRequest
         return [
             'name'    => ['required', 'string', 'max:255'],
             'email'   => ['nullable', 'email', 'max:255'],
-            'logo' => ['nullable', 'image', 'max:2048', 'dimensions:min_width=100,min_height=100'],
+            'logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048', 'dimensions:min_width=100,min_height=100'],
             'website' => ['nullable', 'url:http,https', 'max:255'],
         ];
     }
@@ -44,6 +44,7 @@ class StoreCompanyRequest extends FormRequest
             'logo.dimensions'  => 'The logo must be at least 100×100 pixels.',
             'logo.max'         => 'The logo may not be larger than 2 MB.',
             'logo.uploaded'    => 'The logo failed to upload. Please try a smaller file.',
+            'logo.mimes'       => 'The logo must be a JPG or PNG file.',
             'website.url'      => 'Please enter a valid URL, for example https://example.com.',
         ];
     }

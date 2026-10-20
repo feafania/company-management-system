@@ -35,14 +35,14 @@
                     <label for="logo" class="form-label">Logo</label>
                     <div class="mb-2">
                         <img id="logo-preview"
-                             src="{{ $company->logo ? asset('storage/' . $company->logo) : '' }}"
+                             src="{{ $company->logo_url ?? '' }}"
                              alt="Logo preview" height="80"
                              class="img-thumbnail {{ $company->logo ? '' : 'd-none' }}">
                     </div>
-                    <input type="file" id="logo" name="logo" accept="image/*"
+                    <input type="file" id="logo" name="logo" accept="image/png,image/jpeg"
                            class="form-control @error('logo') is-invalid @enderror">
                     <div class="form-text">
-                        Minimum size 100×100 pixels, maximum 2 MB. Leave empty to keep the current logo.
+                        JPG or PNG, minimum 100×100 pixels, maximum 2 MB. Leave empty to keep the current logo.
                     </div>
                     @error('logo')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -61,6 +61,7 @@
 
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{ route('companies.show', ['company' => $company, 'page' => request('page', 1)]) }}" class="btn btn-link">Cancel</a>
+                {{-- <a href="{{ route('companies.index', ['page' => request('page', 1)]) }}" class="btn btn-link">Cancel</a> --}}
             </form>
         </div>
     </div>
