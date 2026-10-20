@@ -88,6 +88,10 @@ class CompanyController extends Controller
         return redirect()
             ->route('companies.show', ['company' => $company, 'page' => $request->query('page', 1)])
             ->with('status', 'Company updated.');
+
+     //   return redirect()
+     //       ->route('companies.index', ['page' => $request->query('page', 1)])
+     //       ->with('status', 'Company updated.');
     }
 
     /**

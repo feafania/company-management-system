@@ -29,7 +29,7 @@
                         <tr>
                             <td>
                                 @if ($company->logo)
-                                    <img src="{{ asset('storage/' . $company->logo) }}"
+                                    <img src="{{ $company->logo_url }}"
                                          alt="{{ $company->name }} logo" height="40">
                                 @endif
                             </td>

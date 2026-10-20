@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-3 text-center mb-3 mb-md-0">
                     @if ($company->logo)
-                        <img src="{{ asset('storage/' . $company->logo) }}"
+                        <img src="{{ $company->logo_url }}"
                              alt="{{ $company->name }} logo"
                              class="img-fluid img-thumbnail">
                     @else
