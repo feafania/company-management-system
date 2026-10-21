@@ -2,25 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreEmployeeRequest;
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    public function index(): View
+        {
+            $employees = Employee::query()
+                ->with('company')
+                ->orderBy('last_name')
+                ->orderBy('first_name')
+                ->paginate(10);
 
+            return view('employees.index', compact('employees'));
+        }
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        $companies = Company::query()->orderBy('name')->get(['id', 'name']);
+        return view('employees.create', compact('companies'));
     }
 
     /**
