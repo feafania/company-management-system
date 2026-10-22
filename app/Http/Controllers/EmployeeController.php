@@ -36,18 +36,18 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEmployeeRequest $request): RedirectResponse
     {
-        //
+        Employee::query()->create($request->validated());
+        return redirect()->route('employees.index')->with('status', 'Employee created.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Employee $employee)
+    public function show(Employee $employee): View
     {
-        //
-    }
+            }
 
     /**
      * Show the form for editing the specified resource.
