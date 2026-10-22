@@ -47,7 +47,9 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee): View
     {
-            }
+        $employee->load('company');
+        return view('employees.show', compact('employee'));
+    }
 
     /**
      * Show the form for editing the specified resource.
