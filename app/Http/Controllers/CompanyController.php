@@ -55,6 +55,7 @@ class CompanyController extends Controller
     public function show(Company $company): View
     {
         $company->loadCount('employees');
+        $company->load('employees');
 
         return view('companies.show', compact('company'));
     }
@@ -99,15 +100,21 @@ class CompanyController extends Controller
      */
     public function destroy(Request $request, Company $company): RedirectResponse
     {
-        if ($company->logo) {
-            Storage::disk('public')->delete($company->logo);
+        try {
+            $logo = $company->logo;
+            $company->delete();
+
+            if ($logo) {
+                Storage::disk('public')->delete($logo);
+            }
+        } catch (\Throwable $e) {
+            report($e);
+
+            return back()->with('error', 'The company could not be deleted. Please try again.');
         }
 
-        $company->delete();
-
         $page = max(1, (int) $request->input('page', 1));
-        $companies = Company::query()->count();
-        $lastPage = max(1, (int) ceil($companies / 10));
+        $lastPage = max(1, (int) ceil(Company::query()->count() / 10));
 
         return redirect()
             ->route('companies.index', ['page' => min($page, $lastPage)])
