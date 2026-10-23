@@ -244,4 +244,14 @@ class CompanyTest extends TestCase
             ->delete(route('companies.destroy', $last), ['page' => 2])
             ->assertRedirect(route('companies.index', ['page' => 1]));
     }
+
+    public function test_success_message_is_shown_after_deleting_company(): void
+    {
+        $company = Company::factory()->create();
+
+        $this->actingAs($this->admin)
+            ->followingRedirects()
+            ->delete(route('companies.destroy', $company))
+            ->assertSee('Company deleted.');
+    }
 }
