@@ -40,7 +40,9 @@
                                     <a href="{{ $company->website }}" target="_blank" rel="noopener">{{ $company->website }}</a>
                                 @endif
                             </td>
-                            <td>{{ $company->employees_count }}</td>
+                            <td>
+                                <a href="{{ route('employees.index', ['company_id' => $company->id]) }}">{{ $company->employees_count }}</a>
+                            </td>
                             <td class="text-end">
                                 <a href="{{ route('companies.show', ['company' => $company, 'page' => $companies->currentPage()]) }}" class="btn btn-sm btn-outline-secondary">View</a>
                                 <a href="{{ route('companies.edit', ['company' => $company, 'page' => $companies->currentPage()]) }}" class="btn btn-sm btn-outline-primary">Edit</a>

@@ -70,6 +70,9 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                @include('partials.flash')
+            </div>
             @yield('content')
         </main>
     </div>

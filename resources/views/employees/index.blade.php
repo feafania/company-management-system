@@ -3,8 +3,18 @@
 @section('content')
 <div class="container">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="h3 mb-0">Employees</h1>
-        <a href="{{ route('employees.create') }}" class="btn btn-primary">Add employee</a>
+        <h1 class="h3 mb-0">
+            Employees
+            @if ($company)
+                <span class="text-muted">of {{ $company->name }}</span>
+            @endif
+        </h1>
+        <div>
+            @if ($company)
+                <a href="{{ route('employees.index') }}" class="btn btn-outline-secondary">Show all</a>
+            @endif
+            <a href="{{ route('employees.create', ['company_id' => $company?->id]) }}" class="btn btn-primary">Add employee</a>
+        </div>
     </div>
 
     @if (session('status'))

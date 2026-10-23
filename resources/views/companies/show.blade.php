@@ -6,6 +6,8 @@
         <h1 class="h3 mb-0">{{ $company->name }}</h1>
         <div>
            <a href="{{ route('companies.edit', ['company' => $company, 'page' => request('page', 1)]) }}" class="btn btn-primary">Edit</a>
+           <a href="{{ route('employees.create', ['company_id' => $company->id]) }}" class="btn btn-outline-primary">Add employee</a>
+           <a href="{{ route('employees.index', ['company_id' => $company->id]) }}" class="btn btn-outline-secondary">All employees</a>
            <a href="{{ route('companies.index', ['page' => request('page', 1)]) }}" class="btn btn-outline-secondary">Back to list</a>
         </div>
     </div>
@@ -60,5 +62,16 @@
             </div>
         </div>
     </div>
+
+     @if ($company->employees->isNotEmpty())
+            <h2 class="h5 mt-4">Employees</h2>
+            <ul class="list-group">
+                @foreach ($company->employees as $employee)
+                    <li class="list-group-item">
+                        <a href="{{ route('employees.show', $employee) }}">{{ $employee->first_name }} {{ $employee->last_name }}</a>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
 </div>
 @endsection

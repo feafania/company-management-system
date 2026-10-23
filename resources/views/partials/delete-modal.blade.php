@@ -4,6 +4,7 @@
             @csrf
             @method('DELETE')
             <input type="hidden" name="page" value="{{ request('page', 1) }}">
+            <input type="hidden" name="company_id" value="{{ request('company_id') }}">
 
             <div class="modal-header">
                 <h5 class="modal-title" id="deleteModalLabel">Confirm deletion</h5>
