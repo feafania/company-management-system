@@ -37,7 +37,10 @@
                             class="form-select @error('company_id') is-invalid @enderror" required>
                         <option value="">Select a company</option>
                         @foreach ($companies as $company)
-                            <option value="{{ $company->id }}" @selected((int) old('company_id', $employee->company_id) === $company->id)>
+                            @php
+                                $isSelected = (string) old('company_id', $employee->company_id) === (string) $company->id;
+                            @endphp
+                            <option value="{{ $company->id }}" @selected($isSelected)>
                                 {{ $company->name }}
                             </option>
                         @endforeach
@@ -67,8 +70,10 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Update</button>
-                <a href="{{ route('employees.index', ['page' => request('page', 1)]) }}" class="btn btn-link">Cancel</a>
+                <div class="d-flex flex-column flex-sm-row gap-2">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="{{ route('employees.index', ['page' => request('page', 1)]) }}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
             </form>
         </div>
     </div>

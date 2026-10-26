@@ -35,9 +35,20 @@
                             class="form-select @error('company_id') is-invalid @enderror" required>
                         <option value="">Select a company</option>
                         @foreach ($companies as $company)
-                            <option value="{{ $company->id }}" @selected(old('company_id', request('company_id')) == $company->id)>
+                            @php
+                                $isSelected = (string) old('company_id', request('company_id')) === (string) $company->id;
+                            @endphp
+                            <option value="{{ $company->id }}" @selected($isSelected)>
                                 {{ $company->name }}
                             </option>
+                        @endforeach
+                    </select>
+                    @error('company_id')
+                        $isSelected = (string) old('company_id', request('company_id')) === (string) $company->id;
+                        @endphp
+                        <option value="{{ $company->id }}" @selected($isSelected)>
+                            {{ $company->name }}
+                        </option>
                         @endforeach
                     </select>
                     @error('company_id')
@@ -65,9 +76,11 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Save</button>
-                <a href="{{ request('company_id') ? route('companies.show', request('company_id')) : route('employees.index') }}"
-                   class="btn btn-link">Cancel</a>
+                <div class="d-flex flex-column flex-sm-row gap-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="{{ request('company_id') ? route('companies.show', request('company_id')) : route('employees.index') }}"
+                       class="btn btn-outline-secondary">Cancel</a>
+                </div>
             </form>
         </div>
     </div>

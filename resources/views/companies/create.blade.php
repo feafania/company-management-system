@@ -56,8 +56,10 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Save</button>
-                <a href="{{ route('companies.index') }}" class="btn btn-link">Cancel</a>
+                <div class="d-flex flex-column flex-sm-row gap-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="{{ route('companies.index') }}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
             </form>
         </div>
     </div>

@@ -59,9 +59,11 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Update</button>
-                <a href="{{ route('companies.show', ['company' => $company, 'page' => request('page', 1)]) }}" class="btn btn-link">Cancel</a>
-                {{-- <a href="{{ route('companies.index', ['page' => request('page', 1)]) }}" class="btn btn-link">Cancel</a> --}}
+                <div class="d-flex flex-column flex-sm-row gap-2">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="{{ route('companies.show', ['company' => $company, 'page' => request('page', 1)]) }}" class="btn btn-outline-secondary">Cancel</a>
+                    {{-- <a href="{{ route('companies.index', ['page' => request('page', 1)]) }}" class="btn btn-outline-secondary">Cancel</a> --}}
+                </div>
             </form>
         </div>
     </div>

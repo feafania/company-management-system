@@ -18,10 +18,10 @@ class ExampleTest extends TestCase
 
     public function test_authenticated_user_can_open_home(): void
     {
-        $user = User::factory()->create();
-
-        $this->actingAs($user)
+        $this->actingAs(User::factory()->create())
             ->get('/home')
-            ->assertOk();
+            ->assertOk()
+            ->assertSee('Companies')
+            ->assertSee('Employees');
     }
 }

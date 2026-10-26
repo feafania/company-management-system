@@ -2,17 +2,13 @@
 
 @section('content')
 <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="h3 mb-0">{{ $employee->first_name }} {{ $employee->last_name }}</h1>
-        <div>
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-3">
+        <h1 class="h3 mb-0 text-break">{{ $employee->first_name }} {{ $employee->last_name }}</h1>
+        <div class="d-flex flex-wrap gap-2">
             <a href="{{ route('employees.edit', ['employee' => $employee, 'page' => request('page', 1)]) }}" class="btn btn-primary">Edit</a>
             <a href="{{ route('employees.index', ['page' => request('page', 1)]) }}" class="btn btn-outline-secondary">Back to list</a>
         </div>
     </div>
-
-    @if (session('status'))
-        <div class="alert alert-success">{{ session('status') }}</div>
-    @endif
 
     <div class="card">
         <div class="card-body">
