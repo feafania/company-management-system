@@ -40,16 +40,32 @@
                             </td>
                             <td class="d-none d-md-table-cell">{{ $employee->email }}</td>
                             <td class="d-none d-lg-table-cell">{{ $employee->phone }}</td>
-                            <td class="text-end">
-                                <div class="d-inline-flex flex-wrap justify-content-end gap-1">
-                                    <a href="{{ route('employees.show', ['employee' => $employee, 'page' => $employees->currentPage()]) }}" class="btn btn-sm btn-outline-secondary">View</a>
-                                    <a href="{{ route('employees.edit', ['employee' => $employee, 'page' => $employees->currentPage()]) }}" class="btn btn-sm btn-outline-primary">Edit</a>
-                                    <button type="button" class="btn btn-sm btn-outline-danger"
-                                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            <td class="text-end text-nowrap">
+                                <div class="d-inline-flex gap-1">
+                                    <a href="{{ route('employees.show', ['employee' => $employee, 'page' => $employees->currentPage()]) }}"
+                                       class="btn btn-sm btn-outline-secondary"
+                                       aria-label="View {{ $employee->first_name }} {{ $employee->last_name }}"
+                                       title="View">
+                                        <i class="bi bi-eye" aria-hidden="true"></i>
+                                    </a>
+
+                                    <a href="{{ route('employees.edit', ['employee' => $employee, 'page' => $employees->currentPage()]) }}"
+                                       class="btn btn-sm btn-outline-primary"
+                                       aria-label="Edit {{ $employee->first_name }} {{ $employee->last_name }}"
+                                       title="Edit">
+                                        <i class="bi bi-pencil" aria-hidden="true"></i>
+                                    </a>
+
+                                    <button type="button"
+                                            class="btn btn-sm btn-outline-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal"
                                             data-action="{{ route('employees.destroy', $employee) }}"
                                             data-name="{{ $employee->first_name }} {{ $employee->last_name }}"
-                                            data-hint="">
-                                        Delete
+                                            data-hint=""
+                                            aria-label="Delete {{ $employee->first_name }} {{ $employee->last_name }}"
+                                            title="Delete">
+                                        <i class="bi bi-trash" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </td>

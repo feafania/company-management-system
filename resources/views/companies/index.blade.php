@@ -39,16 +39,32 @@
                             <td>
                                 <a href="{{ route('employees.index', ['company_id' => $company->id]) }}">{{ $company->employees_count }}</a>
                             </td>
-                            <td class="text-end">
-                                <div class="d-inline-flex flex-wrap justify-content-end gap-1">
-                                    <a href="{{ route('companies.show', ['company' => $company, 'page' => $companies->currentPage()]) }}" class="btn btn-sm btn-outline-secondary">View</a>
-                                    <a href="{{ route('companies.edit', ['company' => $company, 'page' => $companies->currentPage()]) }}" class="btn btn-sm btn-outline-primary">Edit</a>
-                                    <button type="button" class="btn btn-sm btn-outline-danger"
-                                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            <td class="text-end text-nowrap">
+                                <div class="d-inline-flex gap-1">
+                                    <a href="{{ route('companies.show', ['company' => $company, 'page' => $companies->currentPage()]) }}"
+                                       class="btn btn-sm btn-outline-secondary"
+                                       aria-label="View {{ $company->name }}"
+                                       title="View">
+                                        <i class="bi bi-eye" aria-hidden="true"></i>
+                                    </a>
+
+                                    <a href="{{ route('companies.edit', ['company' => $company, 'page' => $companies->currentPage()]) }}"
+                                       class="btn btn-sm btn-outline-primary"
+                                       aria-label="Edit {{ $company->name }}"
+                                       title="Edit">
+                                        <i class="bi bi-pencil" aria-hidden="true"></i>
+                                    </a>
+
+                                    <button type="button"
+                                            class="btn btn-sm btn-outline-danger"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#deleteModal"
                                             data-action="{{ route('companies.destroy', $company) }}"
                                             data-name="{{ $company->name }}"
-                                            data-hint="All employees of this company will be deleted too.">
-                                        Delete
+                                            data-hint="All employees of this company will be deleted too."
+                                            aria-label="Delete {{ $company->name }}"
+                                            title="Delete">
+                                        <i class="bi bi-trash" aria-hidden="true"></i>
                                     </button>
                                 </div>
                             </td>

@@ -35,16 +35,8 @@
                             class="form-select @error('company_id') is-invalid @enderror" required>
                         <option value="">Select a company</option>
                         @foreach ($companies as $company)
-                            @php
-                                $isSelected = (string) old('company_id', request('company_id')) === (string) $company->id;
-                            @endphp
-                            <option value="{{ $company->id }}" @selected($isSelected)>
-                                {{ $company->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('company_id')
-                        $isSelected = (string) old('company_id', request('company_id')) === (string) $company->id;
+                        @php
+                            $isSelected = (string) old('company_id', request('company_id')) === (string) $company->id;
                         @endphp
                         <option value="{{ $company->id }}" @selected($isSelected)>
                             {{ $company->name }}
@@ -52,7 +44,7 @@
                         @endforeach
                     </select>
                     @error('company_id')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                    <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
