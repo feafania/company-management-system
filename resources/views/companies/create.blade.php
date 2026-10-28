@@ -1,24 +1,67 @@
+@extends('layouts.app')
 
-ParseError
-resources/views/employees/create.blade.php:52
+@section('content')
+<div class="container">
+    <h1 class="h3 mb-3">Add company</h1>
 
-syntax error, unexpected token "endforeach", expecting "elseif" or "else" or "endif"
-LARAVEL 13.36.0
-PHP 8.5.11
-UNHANDLED
-CODE 0
-500
-GET
-http://127.0.0.1:8000/employees/create?company_id=3
-Exception trace
+    <div class="card">
+        <div class="card-body">
+            <form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data" novalidate>
+                @csrf
 
-Illuminate\Filesystem\Filesystem::{closure:Illuminate\Filesystem\Filesystem::getRequire():120}()
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                    <input type="text" id="name" name="name"
+                           class="form-control @error('name') is-invalid @enderror"
+                           value="{{ old('name') }}" required>
+                    @error('name')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
 
-resources/views/employees/create.blade.php:52
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email"
+                           class="form-control @error('email') is-invalid @enderror"
+                           value="{{ old('email') }}">
+                    @error('email')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
 
-47                        $isSelected = (string) old('company_id', request('company_id')) === (string) $company->id;
-48                        @endphp
-49                        <option value="{{ $company->id }}" @selected($isSelected)>
-    50                            {{ $company->name }}
-    51                        </option>
-52                        @endforea
+                <div class="mb-3">
+                    <label for="logo" class="form-label">Logo</label>
+                    <div class="mb-2">
+                        <img id="logo-preview"
+                             src=""
+                             alt="Logo preview"
+                             height="80"
+                             class="img-thumbnail d-none">
+                    </div>
+                    <input type="file" id="logo" name="logo" accept="image/png,image/jpeg"
+                           class="form-control @error('logo') is-invalid @enderror">
+                    <div class="form-text">JPG or PNG, minimum 100×100 pixels, maximum 2 MB.</div>
+                    @error('logo')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="mb-3">
+                    <label for="website" class="form-label">Website</label>
+                    <input type="url" id="website" name="website"
+                           class="form-control @error('website') is-invalid @enderror"
+                           value="{{ old('website') }}" placeholder="https://example.com">
+                    @error('website')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row gap-2">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    <a href="{{ route('companies.index') }}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
