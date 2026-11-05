@@ -1,58 +1,138 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Company Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web application built with Laravel for managing companies and their employees. The project demonstrates CRUD operations, database relationships, form validation, file uploads and pagination.
 
-## About Laravel
+Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Company Management
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* Create, view, edit and delete companies.
+* Store company details, including name, email, address and website.
+* Upload and display company logos.
+* Validate form input.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Employee Management
 
-## Learning Laravel
+* Create, view, edit and delete employees.
+* Associate employees with companies.
+* Display employee records with pagination.
+* Validate employee details.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Additional Features
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+* Responsive interface using Tailwind CSS and Bootstrap.
+* Database migrations, factories and seeders.
+* Eloquent ORM for database operations.
+* Reusable Blade templates and layout components.
+* Laravel routing and request validation.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Technologies Used
 
-## Agentic Development
+* Backend: PHP, Laravel
+* Frontend: Blade, HTML, Tailwind CSS, Bootstrap
+* Database: MySQL / MariaDB
+* Build Tools: Vite, npm
+* Version Control: Git, GitHub
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Installation
 
-```bash
-composer require laravel/boost --dev
+Prerequisites
 
-php artisan boost:install
-```
+Make sure you have the following installed:
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+* PHP (compatible with the Laravel version)
+* Composer
+* Node.js and npm
+* MySQL or MariaDB
 
-## Contributing
+Setup
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. Clone the repository:
 
-## Code of Conduct
+git clone https://github.com/feafania/company-management-system.git
+cd company-management-system
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. Install PHP dependencies:
 
-## Security Vulnerabilities
+composer install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. Install frontend dependencies:
 
-## License
+npm install
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. Create your environment configuration:
+
+cp .env.example .env
+
+5. Generate the application key:
+
+php artisan key:generate
+
+6. Configure your database connection in .env:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=company_management
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+
+7. Run database migrations:
+
+php artisan migrate
+
+8. (Optional) Populate the database with sample data:
+
+php artisan db:seed
+
+9. Create the public storage link for uploaded files:
+
+php artisan storage:link
+
+10. Build frontend assets:
+
+npm run build
+
+11. Start the development server:
+
+php artisan serve
+
+Open the local URL displayed in the terminal to access the application.
+
+Development
+
+To run the frontend development server:
+
+npm run dev
+
+To clear Laravel’s cached configuration, routes and views:
+
+php artisan optimize:clear
+
+Project Structure
+
+app/
+├── Http/Controllers/    # Application controllers
+├── Models/              # Eloquent models
+database/
+├── factories/            # Model factories
+├── migrations/           # Database schema
+└── seeders/              # Sample data
+resources/
+└── views/                # Blade templates
+routes/
+└── web.php               # Web routes
+storage/
+└── app/public/           # Uploaded files
+public/
+└── build/                # Compiled frontend assets
+
+Purpose
+
+This project was developed as part of my software development training to practise building a Laravel application with database-backed CRUD functionality, file uploads, validation and relationships between models.
+
+Author
+
+Tatsiana Kashko
+
+* GitHub: feafania
